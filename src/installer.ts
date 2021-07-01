@@ -33,11 +33,11 @@ export async function getTekton(version: string) {
 }
 
 async function downloadTekton(version: string): Promise<string> {
-  const toolDirectoryName = `tekton-${version}`
+  // const toolDirectoryName = `tekton-${version}`
   const os = process.platform
   core.debug(`OS = '${os}'`)
   const downloadUrl =
-    `https://github.com/tektoncd/cli/releases/download/v0.19.1/tkn_0.19.1_Linux_x86_64.tar.gz`
+    `https://github.com/tektoncd/cli/releases/download/v${version}/tkn_${version}_Linux_x86_64.tar.gz`
 
     core.debug(`downloading ${downloadUrl}`)
 
@@ -46,9 +46,9 @@ async function downloadTekton(version: string): Promise<string> {
     core.debug(`downloadPath = '${downloadPath}'`)
     const extractedPath = await tc.extractTar(downloadPath)
     core.debug(`extractedPath = '${extractedPath}'`)
-    let toolRoot = path.join(extractedPath, toolDirectoryName)
-    core.debug(`toolRoot = '${toolRoot}'`)
-    return await tc.cacheDir(toolRoot, 'tekton', version)
+    //let toolRoot = path.join(extractedPath, toolDirectoryName)
+    //core.debug(`toolRoot = '${toolRoot}'`)
+    return await tc.cacheDir(extractedPath, 'tkn', version)
   } catch (err) {
     throw err
   }
