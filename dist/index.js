@@ -63,7 +63,7 @@ async function downloadTekton(version) {
     const toolDirectoryName = `tekton-${version}`;
     const os = process.platform;
     core.debug(`OS = '${os}'`);
-    const downloadUrl = `https://github.com/tektoncd/cli/releases/download/${version}/tkn_${version}_Linux_x86_64.tar.gz`;
+    const downloadUrl = `https://github.com/tektoncd/cli/releases/download/v0.19.1/tkn_0.19.1_Linux_x86_64.tar.gz`;
     core.debug(`downloading ${downloadUrl}`);
     try {
         const downloadPath = await tc.downloadTool(downloadUrl);
