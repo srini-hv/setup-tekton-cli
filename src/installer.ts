@@ -21,13 +21,13 @@ if (!tempDirectory) {
 
 export async function getTekton(version: string) {
   let toolPath: string;
-  toolPath = tc.find('tekton', version);
+  toolPath = tc.find('tkn', version);
 
   if (!toolPath) {
     toolPath = await downloadTekton(version);
   }
 
-  toolPath = path.join(toolPath, 'bin');
+  //toolPath = path.join(toolPath, 'bin');
   core.debug(`toolPath = ${toolPath}`)
   core.addPath(toolPath);
 }
@@ -48,7 +48,7 @@ async function downloadTekton(version: string): Promise<string> {
     core.debug(`extractedPath = '${extractedPath}'`)
     //let toolRoot = path.join(extractedPath, toolDirectoryName)
     //core.debug(`toolRoot = '${toolRoot}'`)
-    return await tc.cacheDir(extractedPath, 'tkn', version)
+    return await tc.cacheFile(extractedPath, 'tkn','tkn', version)
   } catch (err) {
     throw err
   }
