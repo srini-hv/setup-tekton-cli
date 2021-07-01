@@ -1,0 +1,10 @@
+name: 'Setup Tekton'
+description: 'Install a specific version of Tektpn and add it to the PATH'
+author: 'Srinivas'
+inputs:
+  tekton-version:
+    description: 'Version Spec of the version to use.'
+    default: 'v0.19.1'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
