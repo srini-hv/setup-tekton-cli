@@ -3,8 +3,8 @@
 Add this step into workflow
 
 ```
-    - name: Set up Maven
-      uses: stCarolas/setup-maven@v4
+    - name: Set up Tekton CLI
+      uses: srini-hv/setup-tekton-cli@v1
       with:
-        maven-version: 3.5.4
+        tekton-version: 0.19.1
 ```
