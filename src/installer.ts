@@ -48,7 +48,7 @@ async function downloadTekton(version: string): Promise<string> {
     core.debug(`extractedPath = '${extractedPath}'`)
     let toolRoot = path.join(extractedPath, 'tkn')
     core.debug(`toolRoot = '${toolRoot}'`)
-    return await tc.cacheFile(extractedPath, 'tkn','tkn', version)
+    return await tc.cacheFile(toolRoot, 'tkn','tkn', version)
   } catch (err) {
     throw err
   }
