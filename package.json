@@ -1,9 +1,9 @@
 {
-  "name": "setup-maven",
+  "name": "setup-tekton-cli",
   "version": "1.0.0",
   "private": true,
-  "description": "setup maven action",
-  "main": "lib/setup-maven.js",
+  "description": "setup tekton action",
+  "main": "lib/setup-tekton.js",
   "scripts": {
     "build": "tsc && ncc build",
     "format": "prettier --write **/*.ts",
