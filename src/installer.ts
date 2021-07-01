@@ -37,7 +37,7 @@ async function downloadTekton(version: string): Promise<string> {
   const os = process.platform
   core.debug(`OS = '${os}'`)
   const downloadUrl =
-    `https://github.com/tektoncd/cli/releases/download/${version}/tkn_${version}_Linux_x86_64.tar.gz`
+    `https://github.com/tektoncd/cli/releases/download/v0.19.1/tkn_0.19.1_Linux_x86_64.tar.gz`
 
     core.debug(`downloading ${downloadUrl}`)
 
