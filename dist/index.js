@@ -70,8 +70,8 @@ async function downloadTekton(version) {
         core.debug(`downloadPath = '${downloadPath}'`);
         const extractedPath = await tc.extractTar(downloadPath);
         core.debug(`extractedPath = '${extractedPath}'`);
-        //let toolRoot = path.join(extractedPath, toolDirectoryName)
-        //core.debug(`toolRoot = '${toolRoot}'`)
+        let toolRoot = path.join(extractedPath, 'tkn');
+        core.debug(`toolRoot = '${toolRoot}'`);
         return await tc.cacheFile(extractedPath, 'tkn', 'tkn', version);
     }
     catch (err) {
