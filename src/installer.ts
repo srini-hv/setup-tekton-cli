@@ -33,15 +33,16 @@ export async function getTekton(version: string) {
 }
 
 async function downloadTekton(version: string): Promise<string> {
+  var os = ''
   if(process.platform === 'win32'){
-    const os = "Windows"
+    os = "Windows"
   }else if(process.platform === 'linux'){
-    const os = "Linux"
+    os = "Linux"
   }
   else{
-    const os = "Darwin"
+    os = "Darwin"
   }
-  const os = process.platform
+  //const os = process.platform
   core.debug(`OS = '${os}'`)
   const downloadUrl =
     `https://github.com/tektoncd/cli/releases/download/v${version}/tkn_${version}_${os}_x86_64.tar.gz`
