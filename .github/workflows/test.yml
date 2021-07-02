@@ -15,7 +15,7 @@ jobs:
 
   integ:
     strategy:
-      # fail-fast: false
+      fail-fast: false
       matrix:
         os:
           - ubuntu-18.04

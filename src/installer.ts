@@ -28,36 +28,39 @@ export async function getTekton(version: string) {
   }
 
   //toolPath = path.join(toolPath, 'bin');
-  core.debug(`toolPath = ${toolPath}`)
+  core.debug(`toolPath = ${toolPath}`);
   core.addPath(toolPath);
 }
 
 async function downloadTekton(version: string): Promise<string> {
-  var os = ''
-  if(process.platform === 'win32'){
-    os = "Windows"
-  }else if(process.platform === 'linux'){
-    os = "Linux"
-  }
-  else{
-    os = "Darwin"
+  var os = '';
+  var downloadUrl = '';
+  if (process.platform === 'win32') {
+    os = 'Windows';
+    downloadUrl = `https://github.com/tektoncd/cli/releases/download/v${version}/tkn_${version}_${os}_x86_64.zip`;
+  } else if (process.platform === 'linux') {
+    os = 'Linux';
+    downloadUrl = `https://github.com/tektoncd/cli/releases/download/v${version}/tkn_${version}_${os}_x86_64.tar.gz`;
+  } else {
+    os = 'Darwin';
+    downloadUrl = `https://github.com/tektoncd/cli/releases/download/v${version}/tkn_${version}_${os}_x86_64.tar.gz`;
   }
   //const os = process.platform
-  core.debug(`OS = '${os}'`)
-  const downloadUrl =
-    `https://github.com/tektoncd/cli/releases/download/v${version}/tkn_${version}_${os}_x86_64.tar.gz`
+  core.debug(`OS = '${os}'`);
+  // const downloadUrl =
+  //   `https://github.com/tektoncd/cli/releases/download/v${version}/tkn_${version}_${os}_x86_64.tar.gz`
 
-    core.debug(`downloading ${downloadUrl}`)
+  core.debug(`downloading ${downloadUrl}`);
 
   try {
-    const downloadPath = await tc.downloadTool(downloadUrl)
-    core.debug(`downloadPath = '${downloadPath}'`)
-    const extractedPath = await tc.extractTar(downloadPath)
-    core.debug(`extractedPath = '${extractedPath}'`)
-    let toolRoot = path.join(extractedPath, 'tkn')
-    core.debug(`toolRoot = '${toolRoot}'`)
-    return await tc.cacheFile(toolRoot, 'tkn','tkn', version)
+    const downloadPath = await tc.downloadTool(downloadUrl);
+    core.debug(`downloadPath = '${downloadPath}'`);
+    const extractedPath = await tc.extractTar(downloadPath);
+    core.debug(`extractedPath = '${extractedPath}'`);
+    let toolRoot = path.join(extractedPath, 'tkn');
+    core.debug(`toolRoot = '${toolRoot}'`);
+    return await tc.cacheFile(toolRoot, 'tkn', 'tkn', version);
   } catch (err) {
-    throw err
+    throw err;
   }
 }
