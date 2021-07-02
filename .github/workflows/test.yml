@@ -15,7 +15,7 @@ jobs:
 
   integ:
     strategy:
-      fail-fast: false
+      # fail-fast: false
       matrix:
         os:
           - ubuntu-18.04
@@ -30,7 +30,7 @@ jobs:
       - uses: ./
         with:
           tekton-version: "0.19.0"
-      - run: tkn version
+      - run: tkn -h
 
       # Test setup default version
       # - uses: ./
