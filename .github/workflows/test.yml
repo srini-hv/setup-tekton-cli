@@ -27,11 +27,11 @@ jobs:
       - uses: actions/checkout@v2
 
       # Test setup specific version
-      - uses: ./
-        with:
-          tekton-version: "0.19.0"
-      - run: tkn version
+      # - uses: ./
+      #   with:
+      #     tekton-version: "0.19.0"
+      # - run: tkn version
 
       # Test setup default version
-      # - uses: ./
-      # - run: tkn version | grep -F 0.19.1
+      - uses: ./
+      - run: tkn version
