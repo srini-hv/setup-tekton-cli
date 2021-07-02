@@ -35,9 +35,11 @@ export async function getTekton(version: string) {
 async function downloadTekton(version: string): Promise<string> {
   var os = '';
   var downloadUrl = '';
+  var tool = 'tkn';
   if (process.platform === 'win32') {
     os = 'Windows';
     downloadUrl = `https://github.com/tektoncd/cli/releases/download/v${version}/tkn_${version}_${os}_x86_64.zip`;
+    tool = 'tkn.exe';
   } else if (process.platform === 'linux') {
     os = 'Linux';
     downloadUrl = `https://github.com/tektoncd/cli/releases/download/v${version}/tkn_${version}_${os}_x86_64.tar.gz`;
@@ -57,9 +59,9 @@ async function downloadTekton(version: string): Promise<string> {
     core.debug(`downloadPath = '${downloadPath}'`);
     const extractedPath = await tc.extractTar(downloadPath);
     core.debug(`extractedPath = '${extractedPath}'`);
-    let toolRoot = path.join(extractedPath, 'tkn');
+    let toolRoot = path.join(extractedPath, tool);
     core.debug(`toolRoot = '${toolRoot}'`);
-    return await tc.cacheFile(toolRoot, 'tkn', 'tkn', version);
+    return await tc.cacheFile(toolRoot, tool, tool, version);
   } catch (err) {
     throw err;
   }
