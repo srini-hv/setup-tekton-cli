@@ -88,7 +88,7 @@ async function downloadTekton(version) {
         core.debug(`extractedPath = '${extractedPath}'`);
         let toolRoot = path.join(extractedPath, tool);
         core.debug(`toolRoot = '${toolRoot}'`);
-        return await tc.cacheFile(toolRoot, tool, tool, version);
+        return await tc.cacheFile(toolRoot, tool, 'tkn', version);
     }
     catch (err) {
         throw err;
