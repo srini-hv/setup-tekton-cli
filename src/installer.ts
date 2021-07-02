@@ -33,11 +33,18 @@ export async function getTekton(version: string) {
 }
 
 async function downloadTekton(version: string): Promise<string> {
-  // const toolDirectoryName = `tekton-${version}`
+  if(process.platform === 'win32'){
+    const os = "Windows"
+  }else if(process.platform === 'linux'){
+    const os = "Linux"
+  }
+  else{
+    const os = "Darwin"
+  }
   const os = process.platform
   core.debug(`OS = '${os}'`)
   const downloadUrl =
-    `https://github.com/tektoncd/cli/releases/download/v${version}/tkn_${version}_Linux_x86_64.tar.gz`
+    `https://github.com/tektoncd/cli/releases/download/v${version}/tkn_${version}_${os}_x86_64.tar.gz`
 
     core.debug(`downloading ${downloadUrl}`)
 
